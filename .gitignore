@@ -1,3 +1,4 @@
 .idea
-.Task3 - Shapes.iml
-/src/
+lib
+Task3 - Shapes.iml
+gitignore
