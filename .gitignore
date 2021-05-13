@@ -1,7 +1,4 @@
-idea
-.lib
-Task3 - Shapes.iml
-gitignore
+*.iml
+.idea
+out
 /lib/
-/.idea/
-/out/
