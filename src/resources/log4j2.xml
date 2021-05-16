@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
   <Properties>
-          <property name="pattern">%d{yyy-MM-dd HH:mm} %-5level %logger{1} -%msg%n</property>
+          <property name="pattern_console">%d{yyy-MM-dd HH:mm} %-5level %logger{1} -%msg%n</property>
     </Properties>
     <Appenders>
-        <RollingFile name="loggerFile" filename="${basePath}/${date:yyyy-MM-dd}/app-info.log" filePattern="${pattern}">
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern_console}"/>
+        </Console>
+        <RollingFile name="CustomFile" fileName="logs/log.txt"
+                     filePattern="${pattern_console}">
             <PatternLayout>
-                <pattern>%d{yyy-MM-dd HH:mm} %-5level %logger{1} -%msg%n</pattern>
+                <Pattern>%d %p %c [%t] %m%n</Pattern>
             </PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 KB"/>
             </Policies>
         </RollingFile>
-
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="${pattern}"/>
-        </Console>
-        <File name="CustomFile" fileName="logs/textLog.log" bufferedIO="true">
-            <PatternLayout pattern="${pattern}"/>
-        </File>
     </Appenders>
     <Loggers>
-        <Logger name="ps" level="trace" additivity="true">
-            <appender-ref ref="fileLogger" level="trace" />
-        </Logger>
-        <Root level="trace" additivity="true">
+        <Root level="debug">
             <AppenderRef ref="Console" />
             <AppenderRef ref="CustomFile"/>
         </Root>
