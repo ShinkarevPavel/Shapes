@@ -71,7 +71,6 @@ public class SphereRepository implements ShapeRepository {
     @Override
     public List<Sphere> query(Specification specification) {
         List<Sphere> queryList = new ArrayList<>();
-
         for (Map.Entry<Long, Sphere> sphere : spheres.entrySet()){
             if (specification.specify(sphere.getValue())){
                 queryList.add(sphere.getValue());
