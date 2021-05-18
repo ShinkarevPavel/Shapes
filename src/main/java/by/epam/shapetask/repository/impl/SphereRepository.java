@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SphereRepository implements ShapeRepository {
-    private static final SphereRepository INSTANCE = new SphereRepository();
+    private static SphereRepository instance;
     private static Logger logger = LogManager.getLogger();
     private Map<Long, Sphere> spheres = new HashMap<>();
     private Sphere currentSphere;
@@ -21,7 +21,10 @@ public class SphereRepository implements ShapeRepository {
     private SphereRepository(){}
 
     public static SphereRepository getInstance(){
-        return INSTANCE;
+        if (instance == null){
+            instance = new SphereRepository();
+        }
+        return instance;
     }
 
     public Map<Long, Sphere> getSpheres() {
@@ -74,6 +77,7 @@ public class SphereRepository implements ShapeRepository {
         for (Map.Entry<Long, Sphere> sphere : spheres.entrySet()){
             if (specification.specify(sphere.getValue())){
                 queryList.add(sphere.getValue());
+                logger.info("Query was processed with " + specification.getClass().getName());
             }
         }
         return queryList;

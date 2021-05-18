@@ -1,14 +1,22 @@
 package main.java.by.epam.shapetask.entity;
 
 import main.java.by.epam.shapetask.exception.ShapeException;
+import main.java.by.epam.shapetask.observer.Observable;
+import main.java.by.epam.shapetask.observer.Observer;
+import main.java.by.epam.shapetask.observer.SphereEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Sphere extends AbstractShape {
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Sphere extends AbstractShape implements Observable {
 
     private Logger logger = LogManager.getLogger();
     private Point point;
     private double radius;
+    private List<Observer> observerList;
 
     public Sphere(Point point, double radius) throws ShapeException{
         super();
@@ -19,6 +27,7 @@ public class Sphere extends AbstractShape {
             throw new ShapeException("0 or negative value into radius parameter");
         }
         this.point = point;
+        this.observerList = new ArrayList<>();
         logger.info("Sphere object was created");
     }
 
@@ -36,6 +45,27 @@ public class Sphere extends AbstractShape {
 
     public void setRadius(double radius) {
         this.radius = radius;
+    }
+
+    @Override
+    public void attach(Observer observer) {
+        observerList.add(observer);
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        observerList.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        if (!observerList.isEmpty()) {
+            for (Observer current : observerList) {
+                if (current != null) {
+                    current.update(new SphereEvent(this));
+                }
+            }
+        }
     }
 
     @Override

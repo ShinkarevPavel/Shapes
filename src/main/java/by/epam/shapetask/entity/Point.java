@@ -1,7 +1,5 @@
 package main.java.by.epam.shapetask.entity;
 
-import main.java.by.epam.shapetask.exception.ShapeException;
-
 public class Point {
     private double coordinateX;
     private double coordinateY;

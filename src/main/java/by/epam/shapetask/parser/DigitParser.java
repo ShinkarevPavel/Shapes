@@ -23,6 +23,7 @@ public class DigitParser {
             String[] temp = currentString.split(STRING_DELIMITER);
             for (String s : temp){
                 sphereParameters.add(Double.parseDouble(s));
+                logger.info("String was parsed and added to collection");
             }
             return sphereParameters;
         }
