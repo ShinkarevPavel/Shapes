@@ -10,7 +10,7 @@ public class SphereAction implements ShapeAction {
 
     @Override
     public double findSurfaceSquare(Sphere sphere) {
-        return 4 * Math.PI * Math.pow(sphere.getRadius(), 2);
+        return 4.0 * Math.PI * Math.pow(sphere.getRadius(), 2.0);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class SphereAction implements ShapeAction {
         double high = lengthToPlane(sphere);
         if (high < 0){
             logger.info("High of a hemisphere was set");
-            double radius = Math.sqrt(Math.pow(sphere.getRadius(), 2) - Math.pow(high, 2));
+            double radius = Math.sqrt(Math.pow(sphere.getRadius(), 2) - Math.pow(Math.abs(high), 2));
             double capacityOfShape = (4 * Math.PI * Math.pow(radius, 3)) / 3;
             differenceOfSphereParts = findVolume(sphere) - capacityOfShape;
         }
@@ -53,18 +53,21 @@ public class SphereAction implements ShapeAction {
     }
 
     private double lengthToPlane(Sphere sphere){
-        double length = 0.0;
+        double length = 1.0;
         if (Math.abs(sphere.getPoint().getCoordinateX()) - sphere.getRadius() <= 0){
             length = Math.abs(sphere.getPoint().getCoordinateX()) - sphere.getRadius();
             logger.info("Sphere is touch or crossing XY plane");
+            return length;
         }
         if (Math.abs(sphere.getPoint().getCoordinateY()) - sphere.getRadius() <= 0){
             length = Math.abs(sphere.getPoint().getCoordinateY()) - sphere.getRadius();
             logger.info("Sphere is touch or crossing YZ plane");
+            return length;
         }
         if (Math.abs(sphere.getPoint().getCoordinateZ()) - sphere.getRadius() <= 0){
             length = Math.abs(sphere.getPoint().getCoordinateZ()) - sphere.getRadius();
             logger.info("Sphere is touch or crossing ZX plane");
+            return length;
         }
         return length;
     }

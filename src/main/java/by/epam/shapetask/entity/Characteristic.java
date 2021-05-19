@@ -6,7 +6,11 @@ public class Characteristic {
     private boolean isSphere;
     private boolean isTouchCoordinatePlane;
 
-    public Characteristic() {
+    public Characteristic(double volume, double surfaceSquare, boolean isSphere, boolean isTouchCoordinatePlane) {
+        this.volume = volume;
+        this.surfaceSquare = surfaceSquare;
+        this.isSphere = isSphere;
+        this.isTouchCoordinatePlane = isTouchCoordinatePlane;
     }
 
     public double getVolume() {

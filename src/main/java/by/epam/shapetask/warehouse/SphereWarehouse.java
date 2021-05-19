@@ -28,6 +28,10 @@ public class SphereWarehouse {
         return instance;
     }
 
+    public Map<Long, Characteristic> getAllCharacteristic() {
+        return characteristic;
+    }
+
     public void putCharacteristic(Long id, Characteristic characteristic) {
         logger.info("Characteristic was added to warehouse");
         this.characteristic.put(id, characteristic);

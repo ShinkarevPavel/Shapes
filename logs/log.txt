@@ -1,1 +1,3 @@
 2021-05-16 20:21:09,631 INFO main.java.by.epam.shapetask.reader.DocumentReader [main] List of strings was created
+2021-05-18 20:55:21,140 INFO main.java.by.epam.shapetask.reader.DocumentReader [main] List of strings was created
+2021-05-18 21:00:45,926 INFO main.java.by.epam.shapetask.reader.DocumentReader [main] List of strings was created

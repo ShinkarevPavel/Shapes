@@ -34,7 +34,7 @@ public class SphereRepository implements ShapeRepository {
     @Override
     public boolean add(AbstractShape shape) {
         boolean flag= false;
-        if (spheres.put(shape.getId(),(Sphere)shape) != null){
+        if (spheres.put(shape.getId(),(Sphere)shape) == null){
             logger.debug("Sphere was added to repository");
             flag = true;
         }

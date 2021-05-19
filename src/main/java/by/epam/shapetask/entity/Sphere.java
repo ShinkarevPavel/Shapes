@@ -27,6 +27,7 @@ public class Sphere extends AbstractShape implements Observable {
             throw new ShapeException("0 or negative value into radius parameter");
         }
         this.point = point;
+        this.radius = radius;
         this.observerList = new ArrayList<>();
         logger.info("Sphere object was created");
     }
